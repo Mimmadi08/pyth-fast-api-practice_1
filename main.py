@@ -1,16 +1,16 @@
 from fastapi import FastAPI
+from orders import router as orders_router    # ← ADD THIS
 
-# This creates your API application
 app = FastAPI()
 
-# @app.get("/") means:
-# when someone visits the "/" URL, run this function
+# Day 1 routes
 @app.get("/")
 def hello():
     return {"message": "My first API is working!"}
 
-# A route with a variable in the URL
-# whatever name you type in the URL comes in as 'name'
 @app.get("/greet/{name}")
 def greet(name: str):
     return {"hello": name}
+
+# Register orders routes              ← ADD THIS
+app.include_router(orders_router)
