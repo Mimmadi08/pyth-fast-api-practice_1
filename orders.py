@@ -1,13 +1,14 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from typing import List
 import oracledb
 from database import get_connection
 from schemas import OrderSearchRequest, OrderHeaderResponse
+from auth import verify_api_key
 
 # APIRouter is like a mini FastAPI app for grouping routes
 router = APIRouter()
 
-@router.post("/orders/search", response_model=List[OrderHeaderResponse])
+@router.post("/orders/search", dependencies=[Depends(verify_api_key)],response_model=List[OrderHeaderResponse])
 def search_orders(request: OrderSearchRequest):
     try:
         conn = get_connection()
