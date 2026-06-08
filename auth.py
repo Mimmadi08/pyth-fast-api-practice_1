@@ -1,14 +1,12 @@
 from fastapi import Header, HTTPException
 
-# Your API Key
-# In production this would come from
-# environment variables — never hardcode in real apps!
+# API Key — move to environment variable in production
 API_KEY = "password123"
 
 def verify_api_key(x_api_key: str = Header(...)):
     """
-    Checks X-API-Key header on every
-    protected request.
+    Verifies X-API-Key header on every protected route.
+    Returns 401 if key is missing or incorrect.
     """
     if x_api_key != API_KEY:
         raise HTTPException(
