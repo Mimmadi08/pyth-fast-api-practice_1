@@ -1,4 +1,4 @@
-# For Practice - Order Management REST API
+# Learning - OMS Order Management REST API
 
 A production-grade REST API built with **Python FastAPI** connected to the **Oracle OMS Database**, providing full CRUD operations on Pre-Order Headers with API Key authentication.
 
